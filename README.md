@@ -27,6 +27,5 @@ Käyttöohjeita:
 
 Koodin laadunvalvonta:
 
-- https://codeclimate.com/github/mluukkai/labtool
-- https://travis-ci.org/mluukkai/labtool
-
+[![Build Status](https://travis-ci.org/mluukkai/labtool.png)](https://travis-ci.org/mluukkai/labtool)
+[![Code Climate](https://codeclimate.com/github/mluukkai/labtool.png)](https://codeclimate.com/github/mluukkai/labtool)
