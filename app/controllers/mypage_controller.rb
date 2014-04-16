@@ -44,6 +44,6 @@ class MypageController < ApplicationController
 
     @user.update_attributes(params[:user].except(:registration))
     @user.current_registration.update_attributes(params[:user][:registration]) unless params[:user][:registration].nil?
-    redirect_to "/mypage/#{@user.student_number}", :notice => "your data updated"
+    redirect_to "/mypage/#{@user.student_number}", :notice => "your data has been updated"
   end
 end

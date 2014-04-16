@@ -32,6 +32,7 @@ class WeekFeedbacksController < ApplicationController
     end
 
     week_feedback = WeekFeedback.new(params[:week_feedback])
+    week_feedback.giver = current_user
     @registration.week_feedbacks << week_feedback
 
     if week_feedback.valid?

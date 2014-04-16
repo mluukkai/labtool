@@ -1,6 +1,8 @@
 class WeekFeedback < ActiveRecord::Base
   attr_accessible :points, :text, :week, :hidden_text
   belongs_to :registration
+  belongs_to :giver, class_name: 'User'
+  has_many :feedback_comments
 
   validates :week, :numericality => {:greater_than_or_equal_to => 1}
   validates :points, :numericality => {:greater_than_or_equal_to => 0}

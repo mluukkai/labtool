@@ -124,6 +124,28 @@
                     </div>
                   </div>
               <% end %>
+              <% if fb.feedback_comments.size > 0 %>
+                <b>Comments</b>
+                <% fb.feedback_comments.each do |c|  %>
+                <div>
+                  <i><%= c.user %></i>: <%= c.text %>
+                </div>
+                <% end %>
+              <% end %>
+              <%= form_tag("/feedback_comments/admin_reply") do -%>
+                <div class="rounded" style="margin-left: -10px; display: inline-block; width: auto;">
+                  <%= label_tag 'Add comment' %>
+                  <br/>
+                  <%= text_area_tag 'feedback_comment[text]', nil, :size => "40x3" %>
+                  <%= hidden_field_tag :week_feedback, fb.id %>
+                  <br />
+                  <%= label_tag 'notify student by email' %>
+                  <%= check_box_tag 'notify', true, Course.active.email_student? %>
+                  <%= label_tag 'send the email also to you' %>
+                  <%= check_box_tag 'notify-cc', true, Course.active.email_instructor? %>
+                  <%= submit_tag 'Save comment' %>
+                </div>
+              <% end -%>
             </div>
 
             <hr/>

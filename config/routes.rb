@@ -1,6 +1,7 @@
 Labtool::Application.routes.draw do
   resources :peer_reviews
   resources :week_feedbacks
+  resources :feedback_comments
   resources :registrations
   resources :courses
   resources :users do
@@ -17,6 +18,7 @@ Labtool::Application.routes.draw do
   match 'courses/:id/activity' => 'courses#activity', :via => :post
 
   match 'week_feedbacks/note' => 'week_feedbacks#create_note', :via => :post
+  match 'feedback_comments/admin_reply' => 'feedback_comments#create_admin_reply', :via => :post
 
   match 'mypage' => 'mypage#index', :via => :get
   match 'mypage' => 'mypage#redirect', :via => :post
