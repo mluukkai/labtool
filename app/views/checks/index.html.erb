@@ -1,0 +1,17 @@
+<h1>All checks</h1>
+<p class="status text-right">
+</p>
+<p>
+<%= form_tag("/checktypes/") do -%>
+  <%= label_tag "checktype[name]", "Create new category:" %>
+  <%= text_field_tag 'checktype[name]' %>
+  <%= submit_tag 'Create' %>
+<% end %>
+</p>
+
+<% @types.each do |type| %>
+  <%= render partial: "checktype", locals: {type: type, checks: type.checks.order(:ordering)} %>
+<% end %>
+<% unless @uncategorised.empty? %>
+  <%= render partial: "checktype", locals: {type: nil, checks: @uncategorised} %>
+<% end %>

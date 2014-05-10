@@ -1,0 +1,42 @@
+<h2><%= @checklist.title %></h2>
+<%= form_tag("/checklists/#{@checklist.id}/values/", {:id => 'checklist_'+@checklist.id.to_s}) do -%>
+  <%= label_tag 'checklist[title]', 'Edit title' %>
+  <%= text_field_tag 'checklist[title]', @checklist.title %>
+  <%= check_box_tag(:show_feedbacks, nil, true) %>
+  <%= label_tag :show_feedbacks, 'Show feedback textareas' %>
+  <%= check_box_tag(:reorder_topics) %>
+  <%= label_tag :reorder_topics, 'Reorder topics' %>
+  <%= submit_tag "Save", :class => "small-button" %>
+  <p>
+  <button type="button" class="btn-link expandable collapsed" data-toggle="collapse" data-target="#grade_callback_field">
+    Show grading code
+  </button>
+  <div id="grade_callback_field" class="panel panel-default collapse">
+    <div class="panel-body">
+      <p>Javascript code to call before final grading.</p>
+      <p>You can use the variable checklist to access the checklist properties</p>
+      <p>
+      <%= text_area_tag "checklist[grade_callback]", @checklist.grade_callback, :rows => 10, :cols => 80 %>
+      </p>
+    </div>
+  </div>
+  </p>
+  <p id="help">
+    Drag and drop items to reorder them
+    and click on check names to rename them.
+  </p>
+  <div class="topics" id="topics">
+    <% @checklist.topics.order("ordering").each do |topic| %>
+      <%= render partial: "topic", locals: {:topic => topic} %>
+    <% end %>
+  </div>
+  <div class="rounded">
+    <h2>New checklist topic</h2>
+    <p>
+    <%= label_tag 'new_topic_title', 'Title' %>
+    <%= text_field_tag 'new_topic_title', "New topic" %>
+    <button id="new_topic" type="button" class="btn btn-primary">Create</button>
+    </p>
+  </div>
+  <%= submit_tag "Save", :class => "small-button" %>
+<% end %>

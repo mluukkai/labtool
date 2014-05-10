@@ -11,7 +11,53 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006134827) do
+ActiveRecord::Schema.define(:version => 20140120123040) do
+
+  create_table "checklist_checks", :force => true do |t|
+    t.text    "check"
+    t.string  "varname"
+    t.decimal "value",              :default => 0.0, :null => false
+    t.integer "checklist_topic_id"
+    t.integer "ordering"
+    t.text    "feedback"
+    t.text    "missing_feedback"
+    t.decimal "unchecked_value",    :default => 0.0, :null => false
+    t.integer "type_id"
+  end
+
+  create_table "checklist_topics", :force => true do |t|
+    t.text    "title"
+    t.string  "varname"
+    t.integer "ordering"
+    t.integer "checklist_id"
+    t.integer "scoretype_id"
+    t.text    "update_callback"
+    t.text    "init_callback"
+    t.decimal "score_target"
+    t.integer "scale_denominator", :default => 1, :null => false
+    t.integer "scale_numerator",   :default => 1, :null => false
+  end
+
+  create_table "checklist_topics_checks", :force => true do |t|
+    t.integer "checklist_topic_id"
+    t.integer "checklist_check_id"
+    t.integer "ordering"
+    t.decimal "value",              :default => 0.0, :null => false
+    t.decimal "unchecked_value",    :default => 0.0, :null => false
+  end
+
+  create_table "checklists", :force => true do |t|
+    t.string  "title"
+    t.integer "ordering"
+    t.integer "parent_id"
+    t.text    "init_callback"
+    t.text    "grade_callback"
+    t.text    "remarks"
+  end
+
+  create_table "checktypes", :force => true do |t|
+    t.string "name", :null => false
+  end
 
   create_table "courses", :force => true do |t|
     t.integer  "year"
@@ -27,6 +73,23 @@ ActiveRecord::Schema.define(:version => 20131006134827) do
     t.integer  "week_feedback_max_points"
     t.boolean  "email_student"
     t.boolean  "email_instructor"
+    t.integer  "default_checklist_id"
+  end
+
+  create_table "feedback_comments", :force => true do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "week_feedback_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "passed_checks", :force => true do |t|
+    t.integer  "checklist_check_id"
+    t.integer  "registration_id"
+    t.boolean  "selected"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "peer_reviews", :force => true do |t|
@@ -51,6 +114,14 @@ ActiveRecord::Schema.define(:version => 20131006134827) do
     t.boolean  "active"
     t.decimal  "review1"
     t.decimal  "review2"
+  end
+
+  create_table "scoretypes", :force => true do |t|
+    t.string  "name",                     :null => false
+    t.string  "varname"
+    t.decimal "initial", :default => 0.0, :null => false
+    t.decimal "min",     :default => 0.0, :null => false
+    t.decimal "max",     :default => 3.0, :null => false
   end
 
   create_table "users", :force => true do |t|

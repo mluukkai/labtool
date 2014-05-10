@@ -1,0 +1,18 @@
+// Place all the styles related to the checks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.check_category .list-group {
+  min-height: 20px;
+}
+.check_category .list-group-item {
+  padding: 2px 5px;
+}
+.check_category dl {
+  margin: 2px 0;
+}
+
+.check_category .sortable-placeholder {
+  height: 60px;
+  list-style: none;
+}

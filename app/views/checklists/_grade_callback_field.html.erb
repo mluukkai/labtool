@@ -1,0 +1,12 @@
+<button type="button" class="btn-link expandable collapsed" data-toggle="collapse" data-target="#grade_callback_field">
+  Show grading code
+</button>
+<div id="grade_callback_field" class="panel panel-default collapse">
+  <div class="panel-body">
+    <p>Javascript code to call before final grading.</p>
+    <p>You can use the variable checklist to access the checklist properties</p>
+    <p>
+    <%= text_area_tag "checklist[grade_callback]", checklist.grade_callback, :rows => 10, :cols => 80 %>
+    </p>
+  </div>
+</div>

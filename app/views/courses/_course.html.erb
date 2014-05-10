@@ -14,7 +14,10 @@
 
       <%= form_tag("/courses/#{@course.id}", :method => :put) do %>
           <%= hidden_field_tag 'course[week]', @course.week+1 %>
-          <%= submit_tag "next week", :confirm => "Are you sure?" %>
+          
+          Use checklist 
+          <%= collection_select(:course, :default_checklist_id, Checklist.order(:title), :id, :title, :include_blank => "None") %>
+          <%= submit_tag "Save and advance to week "+(@course.week+1).to_s, :confirm => "Are you sure?" %>
       <% end %>
 
   <% else %>

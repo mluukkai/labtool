@@ -32,6 +32,11 @@
     </div>
 
     <div class="field">
+      Default grading checklist<br/>
+      <%= collection_select(:course, :default_checklist_id, Checklist.order(:title), :id, :title, :include_blank => "None") %>
+    </div>
+
+    <div class="field">
       Review round <br/>
       <%= f.text_field :review_round %>
     </div>

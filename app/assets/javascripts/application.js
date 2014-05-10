@@ -4,8 +4,7 @@
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the // the compiled file.
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
@@ -43,7 +42,64 @@ $(document).ready(function () {
     };
 
     $(".activable").click(activateStudent);
+    
+    var reg_id = $("#current_registration").val();
+    $("#select_grading").change(function() {
+      $("#grader").load("/checklists/"+$(this).val()+"/user/"+reg_id, addAutosubmit);
+    }).change();
+    
+    function addAutosubmit() {
+      var submitting = false;
+      $(".autograde input").change(function() {
+        if (!submitting) {
+          var form = $(this).parents('form');
+          submitting = true;
+          setTimeout(function() {
+            submitting = false;
+            $.ajax({
+              type: "POST",
+              url: form.attr('action'),
+              data: form.serialize(), // serializes the form's elements.
+              success: function(data)
+              {
+              }
+            });
+          }, 1000);
+        }
 
+        return false; // avoid to execute the actual submit of the form.
+      });
+    }
+    
+    //Checklist data editor
+    if (document.getElementById("topics_yaml")) {
+      var editor = CodeMirror.fromTextArea(document.getElementById("topics_yaml"), {
+        lineNumbers: true,
+        mode: "text/x-yaml",
+        vimMode: true,
+        showCursorWhenSelecting: true,
+        tabSize: 2,
+        extraKeys: {
+          "Tab": function(cm) {
+            if (typeof(cm.state.vim) != "undefined" && !cm.state.vim.insertMode && !cm.getSelection().length) {
+              editor2.focus();
+              document.getElementById("checklist_remarks").focus()
+              return;
+            }
+            if (cm.getSelection().length)
+              CodeMirror.commands.indentMore(cm)
+            else 
+              cm.replaceSelection("  ", "end")
+          },
+        }
+      });
+      var editor2 = CodeMirror.fromTextArea(document.getElementById("checklist_remarks"), {
+        lineNumbers: true,
+        mode: "text/x-markdown",
+        vimMode: true,
+        showCursorWhenSelecting: true
+      });
+    }
 });
 
 

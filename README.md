@@ -24,8 +24,13 @@ Käyttöohjeita:
   - courses: uusien kurssiinstanssien luonti, ja vanhojen tiedot ja niiden muutokset
   - registrations: ilmoittautumiset, sekä nykyiset että menneet
   - users: joskus ilmoittautuneiden käyttäjien tiedot
+  - checklists: opiskelijoiden arvosteluun käytettävien tarkistuslistojen muokkaus
 
-Koodin laadunvalvonta:
+Asennus:
+
+Asennetaan kuten normaali rails-sovellus.
+Muista ajaa komento rake bootstrap:all, joka laittaa kantaan checklistin tarvitsemat pistetyypit.
+
 
 [![Build Status](https://travis-ci.org/mluukkai/labtool.png)](https://travis-ci.org/mluukkai/labtool)
 [![Code Climate](https://codeclimate.com/github/mluukkai/labtool.png)](https://codeclimate.com/github/mluukkai/labtool)

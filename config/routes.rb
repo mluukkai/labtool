@@ -2,10 +2,24 @@ Labtool::Application.routes.draw do
   resources :peer_reviews
   resources :week_feedbacks
   resources :registrations
+  resources :checklists
+  resources :checks
+  resources :checktypes
   resources :courses
+  resources :peer_reviews
   resources :users do
     post 'toggle_hidden', :on => :member
   end
+
+  get  'checklists/:id/user/:registration_id' => 'passed_checks#show'
+  post 'checklists/:id/user/' => 'passed_checks#update'
+  get  'checklists/:id/values/' => 'checklists#edit_values', :as => "edit_checklist_values"
+  get  'checklists/ajax/new_topic_form' => 'checklists#new_topic'
+  get  'checklists/ajax/new_check_form' => 'checklists#new_check'
+  get  'checklists/ajax/import_check_form' => 'checklists#import_check'
+  post 'checklists/:id/values/' => 'checklists#update_values'
+
+  post 'checktypes/:id/reorder/' => 'checks#reorder'
 
   match 'register' => 'registrations#new'
 
@@ -18,10 +32,10 @@ Labtool::Application.routes.draw do
 
   match 'week_feedbacks/note' => 'week_feedbacks#create_note', :via => :post
 
-  match 'mypage' => 'mypage#index', :via => :get
-  match 'mypage' => 'mypage#redirect', :via => :post
-  match 'mypage/:student_number' => 'mypage#show',  :via => :get
-  match 'mypage/:student_number' => 'mypage#edit',  :via => :post
+  get  'mypage' => 'mypage#index'
+  post 'mypage' => 'mypage#redirect'
+  get  'mypage/:student_number' => 'mypage#show'
+  post 'mypage/:student_number' => 'mypage#edit'
   match 'mypage/:student_number' => 'mypage#update',  :via => :put
 
   match 'foobar' => 'mypage#foobar'

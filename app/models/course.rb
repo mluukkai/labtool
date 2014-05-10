@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
-  attr_accessible :period, :year, :review_round, :active, :week, :state, :mandatory_reviews, :name, :week_feedback_max_points, :email_instructor, :email_student
+  attr_accessible :period, :year, :review_round, :active, :week, :state, :mandatory_reviews, :name, :week_feedback_max_points, :email_instructor, :email_student, :default_checklist_id
 
+  #has_one :default_checklist, class_name: "Checklist"
   has_many :registrations, :dependent => :destroy
 
   validates :period, :presence => true

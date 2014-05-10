@@ -204,3 +204,16 @@ td {
 .hidden {
     border: 3px solid #ff0000;
 }
+
+.gradebox {
+  float: right;
+  width: 48%;
+  min-height: 50px;
+  background: white;
+}
+.gradebox > .selector {
+  padding: 10px;
+}
+#grader h1, #grader .actions {
+  display: none; 
+}

@@ -1,0 +1,26 @@
+<div class="check_category panel panel-default" id="checktype-<%= type.nil? ? "0" : type.id%>">
+  <div class="panel-heading">
+    <% if type.nil? %>
+      Uncategorised
+    <% else %>
+      <%= type.name %>
+    <% end %>
+  </div>
+  <% unless type.nil? %>
+    <div class="panel-body">
+      <%= form_for(type) do |f| %>
+        Rename category
+        <%= f.text_field :name %>
+        <%= submit_tag 'Rename' %>
+        <%= link_to 'Delete category', type, method: :delete, data: {confirm: 'Are you sure?'}, :class => '' %>
+      <% end %>
+    </div>
+  <% end %>
+  <ul class="list-group">
+    <% checks.each do |check| %>
+      <li class="list-group-item">
+      <%= render partial: "check", locals: {check: check} %>
+      </li>
+    <% end %>
+  </ul>
+</div>

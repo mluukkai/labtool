@@ -1,0 +1,96 @@
+<h1>Checklist</h1>
+<div class="rounded">
+  <h2><%= @checklist.title %></h2>
+  <%= form_tag("/checklists/#{@checklist.id}/user/", :class => 'autograde') do -%>
+    <% if !@registration.nil? %>
+      <%= hidden_field_tag 'registration', @registration.id %>
+    <% end %>
+    <% @checklist.topics.order("ordering").each do |topic| %>
+      <div class="topicContainer">
+        <div class="topic" id="topic_<%= topic.id %>">
+          <%= topic.title %>
+          <button>Done?</button>
+          <span class="pull-right topicscoring">Score: <span class="scorevalue">0</span><% unless topic.score_target.nil? %>/<%= topic.score_target %></span><% end %>
+        </div>
+        <div class="checks">
+          <% topic.checks.each do |check| %>
+            <div class="check">
+              <%= check_box_tag "checks[#{check.id}]", 0, check.checked?(@registration) %><%= label_tag "checks[#{check.id}]", " "+check.check %>
+            </div>
+          <% end %>
+        </div>
+        <div class="feedback">
+        </div>
+      </div>
+    <% end %>
+    <h2>Score</h2>
+    <div class="scores">
+
+    </div>
+    <h2>Feedback</h2>
+    <ul class="feedbacks">
+
+    </ul>
+  <% end %>
+  <div class="remarks">
+    <%= rendered(@checklist.remarks) %>
+  </div>
+</div>
+<div class="rounded actions">
+  <h2>Actions</h2>
+  <%= link_to 'Edit', edit_checklist_values_path(@checklist), :class => 'small-button' %>
+  <%= link_to 'Edit as YAML', edit_checklist_path(@checklist), :class => 'small-button' %>
+  <%= link_to 'Delete the checklist', @checklist, method: :delete, data: {confirm: 'Are you sure?'}, :class => 'small-button' %>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $('form.autograde').autograding({
+      <% @checklist.topics.order("ordering").each do |topic| %>
+        "topic_<%= topic.id %>": 
+        { varname: <%= raw topic.varname.to_json%>,
+          scoretype: <%= raw topic.scoretype.id.to_json%>,
+          scale_denominator: <%= raw topic.scale_denominator.to_json%>,
+          scale_numerator: <%= raw topic.scale_numerator.to_json %>,
+          update_callback: function(checklist) {
+            var checks = this.checks;
+            <% topic.checks.each do |check|  %>
+              <% if check.has_valid_varname? %>
+                var <%= check.varname %> = checks.<%= check.varname %>;
+              <% end %>
+            <% end %>
+            <%= raw topic.update_callback %>
+          },
+          init_callback: function(checklist) {
+            var checks = this.checks;
+            <% topic.checks.each do |check|  %>
+              <% if check.has_valid_varname? %>
+                var <%= check.varname %> = checks.<%= check.varname %>;
+              <% end %>
+            <% end %>
+            <%= raw topic.init_callback %>
+          },
+          checks: {
+            <% topic.topics_checks.includes(:topic).each do |link|  %>
+              "checks_<%= link.check.id %>": 
+              { varname: <%= raw link.check.varname.to_json%>,
+                value: <%= raw link.value.to_json%>,
+                unchecked_value: <%= raw link.unchecked_value.to_json%>,
+                feedback: <%= raw link.check.feedback.to_json%>,
+                missing_feedback: <%= raw link.check.missing_feedback.to_json%>
+              },
+            <% end %>
+          }
+        },
+      <% end %>
+      "scoretypes": {
+      <% @checklist.scoretypes.each do |scoretype| %>
+        "<%= scoretype.id %>": 
+        <%= raw scoretype.attributes.to_json %>,
+      <% end %>
+      },
+      grade_callback: function(checklist) {
+        <%= raw @checklist.grade_callback %>
+      }
+    });
+  });
+</script>

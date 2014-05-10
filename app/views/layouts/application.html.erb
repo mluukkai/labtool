@@ -7,27 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<nav>
-  <%= link_to 'register', "/register" %>
-  <%= link_to 'my page', "/mypage" %>
-  |
-  <% if admin? %>
-      <%= link_to 'peer reviews', peer_reviews_url %>
-      <%= link_to 'current course', Course.active %>
-      <%= link_to 'courses', courses_url %>
-      <%= link_to 'registrations', registrations_url %>
-      <%= link_to 'users', users_url %>
-  <% end %>
-  <% if current_user %>
-      <%= link_to "logout", logout_path %>
-      <%= link_to current_user.email, user_path(current_user) %>
-  <% else %>
-      <%= link_to "login", login_path %>
-  <% end %>
-</nav>
-
-<%= yield %>
+<div class="titlebar">
+  <div class="container">
+      <h1>Tietokantasovelluksen labtool</h1>
+      <nav>
+      <%= link_to 'register', "/register" %>
+      <%= link_to 'my page', "/mypage" %>
+      |
+      <% if admin? %>
+        <%= link_to 'peer reviews', peer_reviews_url %>
+        <%= link_to 'current course', Course.active %>
+        <%= link_to 'courses', courses_url %>
+        <%= link_to 'registrations', registrations_url %>
+        <%= link_to 'users', users_url %>
+        <%= link_to 'checklists', checklists_url %>
+      <% end %>
+      <% if current_user %>
+        <%= link_to "logout", logout_path %>
+        <%= link_to current_user.email, user_path(current_user) %>
+      <% else %>
+        <%= link_to "login", login_path %>
+      <% end %>
+      </nav>
+  </div>
+</div>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

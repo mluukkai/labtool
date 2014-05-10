@@ -1,0 +1,67 @@
+// Place all the styles related to the checklists controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+textarea#topics + .CodeMirror {
+  color: #c00;
+}
+
+.topicContainer {
+  margin-top: 0.4em;
+  padding: 0.5em;
+  border-radius: 5px;
+}
+.topicContainer.done {
+  background: lightgreen;
+}
+.topic {
+  font-size: 1.1em;
+}
+.check {
+  display: inline-block;
+}
+
+.topicfeedback {
+  margin: 0.3em 0;
+}
+.topicfeedback p {
+  display: inline;
+}
+
+.values_table {
+  position: relative;
+}
+.values_table.hide_feedbacks .feedbacks {
+  display: none;
+}
+.values_table .feedbacks,
+.values_table .values {
+  padding: 0;
+}
+.values_table .name input {
+  display: none;
+}
+.values_table .feedbacks textarea,
+.values_table .name input,
+.values_table .values input,
+{
+  width: 100%; 
+  height: 100%; 
+  border: 0;
+}
+
+.hoverdrop:hover + .dropdown-menu {
+  display: block;
+}
+.dropdown-checkedit:hover {
+  display: block;
+}
+.dropdown-checkedit {
+  top: auto;
+  left: auto;
+  right: 0;
+  /* width: 100%; */
+}
+.new_check textarea {
+  width: 100%;
+}

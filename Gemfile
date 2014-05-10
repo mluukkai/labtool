@@ -38,3 +38,4 @@ gem 'jquery-rails'
 gem 'newrelic_rpm'
 
 gem 'rack-mini-profiler'
+gem 'safe_yaml'

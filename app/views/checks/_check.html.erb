@@ -1,0 +1,29 @@
+<div class="check" id="check-<%= check.id %>">
+  <div class="row">
+    <div class="col-md-7">
+      <strong>Name:</strong>
+      <%= check.check %>
+      <% if check.varname %>
+        <strong>Variable name:</strong>
+        <%= check.varname %>
+      <% end %>
+    </div>
+    <div class="col-md-5" style="text-align: right">
+      Check used in <%= check.topics.length %> topic(s)
+    </div>
+  </div>
+  <div class="row">
+    <dl class="col-md-6 checked dl-horizontal">
+      <dt>Unchecked value</dt>
+      <dd><%= check.unchecked_value %></dd>
+      <dt>Feedback</dt>
+      <dd><%= check.missing_feedback%></dd>
+    </dl>
+    <dl class="col-md-6 unchecked dl-horizontal">
+      <dt>Checked value</dt>
+      <dd><%= check.value %></dd>
+      <dt>Feedback</dt>
+      <dd><%= check.feedback%></dd>
+    </dl>
+  </div>
+</div>

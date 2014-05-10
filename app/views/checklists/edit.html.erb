@@ -1,0 +1,26 @@
+<h1>Edit checklist</h1>
+<% @checklist.errors[:topics].each do |msg| %>
+  <p>Error! <%= msg %></p>
+<% end %>
+<%= form_for(@checklist) do -%>
+  <%= label_tag 'checklist[title]', 'Title' %>
+  <%= text_field_tag 'checklist[title]', @checklist.title %>
+  <div>
+    <div style="display: inline-block; width: 60%;" >
+      <%= label_tag 'topics' %>
+      <br />
+      <%= text_area_tag 'topics_yaml', @listdata, :size => "60x30" %>
+    </div>
+    <div style="display: inline-block; width: 35%;" >
+      <%= label_tag 'remarks' %>
+      <br />
+      <%= text_area_tag 'checklist[remarks]', @checklist.remarks, :size => "60x30" %>
+    </div>
+  </div>
+
+  <p>
+  <%= render partial: "grade_callback_field", locals: {checklist: @checklist} %>
+  </p>
+  <%= hidden_field_tag 'checklist[id]', @checklist.id %>
+  <%= submit_tag "Save", :class => "small-button" %>
+<% end %>

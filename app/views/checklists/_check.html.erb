@@ -1,0 +1,56 @@
+<% link_key = link.id unless link_key %>
+<tr id="linked_check_<%= link.id %>">
+  <td class="name">
+    <p class="nametext">
+      <%= link.check.check %>
+    </p>
+    <%= text_field_tag "checks[#{link_key}][check][check]", link.check.check, :class => 'check_check nosubmit' %>
+    <%= hidden_field_tag "checks[#{link_key}][id]", link.id || "new", :class => 'link_id' %>
+    <%= hidden_field_tag "checks[#{link_key}][ordering]", link.ordering, :class => 'check_ordering' %>
+    <%= hidden_field_tag "checks[#{link_key}][check_id]", link.check.id || "new", :class => 'check_id' %>
+    <%= hidden_field_tag "checks[#{link_key}][topic_id]", topic_key, :class => 'topic_id_field'  %>
+  </td>
+  <td class="feedbacks">
+    <%= text_area_tag "checks[#{link_key}][check][feedback]", link.check.feedback, :rows => 1, :cols => 40 %>
+  </td>
+  <td class="feedbacks">
+    <%= text_area_tag "checks[#{link_key}][check][missing_feedback]", link.check.missing_feedback, :rows => 1, :cols => 40 %>
+  </td>
+  <td class="values">
+    <%= number_field_tag "checks[#{link_key}][value]", show_val(link.value), :step=> :any, :class => :value %>
+  </td>
+  <td class="values">
+    <%= number_field_tag "checks[#{link_key}][unchecked_value]", show_val(link.unchecked_value), :step => :any, :class => :unchecked_value %>
+  </td>
+  <td>
+    <button type="button" class="hoverdrop btn btn-default dropdown-toggle" data-toggle="dropdown">
+      ✐
+      <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu dropdown-checkedit" role="menu">
+      <div class="panel-body">
+        <p>
+          Variable name used in javascript code (optional)
+          <%= text_field_tag "checks[#{link_key}][check][varname]", link.check.varname, :class => 'check_varname' %>
+        </p>
+        <% other_topics = link.check.topics.includes(:checklist).where('checklist_id != ?', @checklist.id ) %>
+        <% if other_topics.size > 0 %>
+          <p>This check is also linked to the following topics</p>
+          <ul>
+          <% other_topics.each do |t|  %>
+            <li>
+            <%= link_to t.title + " from "+t.checklist.title, t.checklist %>
+            </li>
+          <% end %>
+          </ul>
+          <button type="button" class="deleteCheck btn btn-danger">Remove check from this topic</button>
+        
+        <% else %>
+          <p>This check is not present in any other topics</p>
+          <button type="button" class="deleteCheck btn btn-danger">Delete this check</button>
+        <% end %>
+  
+      </div>
+    </div>
+  </td>
+</tr>
