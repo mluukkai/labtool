@@ -111,7 +111,7 @@ class Registration < ActiveRecord::Base
 
   def feedback_given
     "#{feedback.map(&:week)}"[1..-2]
-    (1..6).inject("") { |points, n|
+    (1..course.weeks_total).inject("") { |points, n|
       points += (points_for_week n)+" "
     }
   end

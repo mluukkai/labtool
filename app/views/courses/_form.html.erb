@@ -42,6 +42,16 @@
       </div>
 
     <div class="field">
+        Total number of weeks <br />
+        <%= f.text_field :weeks_total %>
+      </div>
+
+    <div class="field">
+        Total number of reviews <br />
+        <%= f.text_field :reviews_total %>
+      </div>
+
+    <div class="field">
       Mandatory code reviews: <br/>
       no <%= radio_button("course", :mandatory_reviews, 0, :checked => @course.mandatory_reviews==false) %> <br/>
       yes <%= radio_button("course", :mandatory_reviews, 1, :checked => @course.mandatory_reviews) %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131006134827) do
+ActiveRecord::Schema.define(:version => 20131025110946) do
 
   create_table "courses", :force => true do |t|
     t.integer  "year"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20131006134827) do
     t.integer  "week_feedback_max_points"
     t.boolean  "email_student"
     t.boolean  "email_instructor"
+    t.integer  "weeks_total"
+    t.integer  "reviews_total"
   end
 
   create_table "peer_reviews", :force => true do |t|
@@ -59,10 +61,9 @@ ActiveRecord::Schema.define(:version => 20131006134827) do
     t.string   "student_number"
     t.string   "email"
     t.boolean  "admin"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "password_digest"
-    t.boolean  "participate_review2"
     t.boolean  "hidden"
   end
 
