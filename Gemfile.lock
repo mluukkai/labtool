@@ -167,7 +167,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   rack-mini-profiler
-  rails (= 3.2.11)
+  rails (~> 3.2.11)
   redcarpet
   rspec-rails
   safe_yaml
