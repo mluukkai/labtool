@@ -6,4 +6,7 @@ Encoding.default_internal = Encoding::UTF_8
 SafeYAML::OPTIONS[:default_mode] = :unsafe
 
 require ::File.expand_path('../config/environment',  __FILE__)
-run Labtool::Application
+
+map '/tktl-labtool' do
+  run Labtool::Application
+end 

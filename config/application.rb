@@ -62,5 +62,6 @@ module Labtool
     config.assets.version = '1.0'
 
     config.assets.initialize_on_precompile = false
+    config.relative_url_root = '/tktl-labtool'
   end
 end

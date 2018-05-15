@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    environment:
+      PGDATA: /data/pg_db
+    volumes:
+      - /data/pg_data/old_labtool:/data/pg_db
+    image: postgres:9.5
+    restart: unless-stopped    
+  web:
+    build: .
+    command: rails s -p 3000 -b 0.0.0.0 Puma
+    ports:
+      - "3010:3000"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: production
+    restart: unless-stopped            
