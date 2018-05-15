@@ -2,19 +2,19 @@
   registration: <%= @course.review_registration %>
 </p>
 <% if @course.review_registration=="open" %>
-    <%= form_tag("/courses/#{@course.id}", :method => :put) do %>
+    <%= form_tag("/tktl-labtool/courses/#{@course.id}", :method => :put) do %>
         <%= hidden_field_tag 'course[state]', 0 %>
         <%= submit_tag "close registration", :confirm => "Are you sure?" %>
     <% end %>
 <% else %>
-    <%= form_tag("/courses/#{@course.id}", :method => :put) do %>
+    <%= form_tag("/tktl-labtool/courses/#{@course.id}", :method => :put) do %>
         <%= hidden_field_tag 'course[state]', 1 %>
         <%= submit_tag "open registration", :confirm => "Are you sure?" %>
     <% end %>
 <% end %>
 
 <p> round: <%= @course.review_round %></p>
-<%= form_tag("/courses/#{@course.id}", :method => :put) do %>
+<%= form_tag("/tktl-labtool/courses/#{@course.id}", :method => :put) do %>
     <%= hidden_field_tag 'course[review_round]', @course.review_round+1 %>
     <%= submit_tag button_label, :confirm => "Are you sure?" %>
 <% end %>

@@ -43,7 +43,7 @@
         <div class='<%= active @user.current_registration %>' style='margin: 10px; padding: 3px 10px 10px 10px'>
 
           <p><strong>has dropped from the course</strong></p>
-          <%= form_tag('/toggle_registration') do %>
+          <%= form_tag('/tktl-labtool/toggle_registration') do %>
               <%= hidden_field_tag 'registration', @user.current_registration.id %>
               <%= submit_tag "Activate again", :class => "small-button" %>
           <% end %>
@@ -169,7 +169,7 @@
           <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a></b>
         </div>
 
-        <%= form_tag("/week_feedbacks") do -%>
+        <%= form_tag("/tktl-labtool/week_feedbacks") do -%>
             <%= label_tag 'week' %>
             <br/>
             <%= text_field_tag 'week_feedback[week]', @user.current_registration.course.week %>
@@ -210,7 +210,7 @@
           <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a></b>
         </div>
 
-        <%= form_tag("/week_feedbacks/note") do -%>
+        <%= form_tag("/tktl-labtool/week_feedbacks/note") do -%>
 
             <div class="instronly" style="padding: 4px;">
               <%= label_tag 'comments visible only to instructors' %>
@@ -237,7 +237,7 @@
       <p><%= "participate review 1: #{(@user.current_registration.participates_review 1) ? "yes" :"no"}" %></p>
 
       <% if  Course.active.review_round<2 %>
-          <%= form_tag('/toggle_review_participation') do %>
+          <%= form_tag('/tktl-labtool/toggle_review_participation') do %>
               <%= hidden_field_tag 'registration', @user.current_registration.id %>
               <%= hidden_field_tag 'round', 1 %>
               <%= submit_tag label(@user.current_registration.participates_review(1)),
@@ -304,7 +304,7 @@
       <p><%= "participate review 2: #{(@user.current_registration.participates_review 2) ? "yes" :"no"}" %></p>
 
       <% if  Course.active.review_round<3 %>
-          <%= form_tag('/toggle_review_participation') do %>
+          <%= form_tag('/tktl-labtool/toggle_review_participation') do %>
               <%= hidden_field_tag 'registration', @user.current_registration.id %>
               <%= hidden_field_tag 'round', 2 %>
               <%= submit_tag label(@user.current_registration.participates_review(2)),
@@ -373,7 +373,7 @@
 
     <% if @user.current_registration.active %>
 
-        <%= form_tag('/toggle_registration') do %>
+        <%= form_tag('/tktl-labtool/toggle_registration') do %>
             <%= hidden_field_tag 'registration', @user.current_registration.id %>
             <%= submit_tag "Make inactive",
                            :class => "small-button",
