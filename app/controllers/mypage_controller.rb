@@ -9,10 +9,10 @@ class MypageController < ApplicationController
     user = User.where(:student_number => number).first unless User.where(:student_number => number).empty?
 
     if User.where(:student_number => number).empty? or user.email != email or user.hidden?
-      redirect_to "/mypage", :notice => "enter your student number and email address"
+      redirect_to "/tktl-labtool/mypage", :notice => "enter your student number and email address"
     else
       session[:student_number] = number
-      redirect_to "/mypage/#{number}"
+      redirect_to "/tktl-labtool/mypage/#{number}"
 
     end
 
@@ -30,7 +30,7 @@ class MypageController < ApplicationController
     if session[:student_number]
       @user = User.find_by_student_number(session[:student_number])
     else
-      redirect_to "/mypage", :notice => "enter your student number and email address"
+      redirect_to "/tktl-labtool/mypage", :notice => "enter your student number and email address"
     end
   end
 
@@ -45,6 +45,6 @@ class MypageController < ApplicationController
 
     @user.update_attributes(params[:user].except(:registration))
     @user.current_registration.update_attributes(params[:user][:registration]) unless params[:user][:registration].nil?
-    redirect_to "/mypage/#{@user.student_number}", :notice => "your data has been updated"
+    redirect_to "/tktl-labtool/mypage/#{@user.student_number}", :notice => "your data has been updated"
   end
 end
