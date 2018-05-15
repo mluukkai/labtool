@@ -4,8 +4,8 @@ services:
     environment:
       PGDATA: /data/pg_db
     volumes:
-      - /data/pg_data/old_labtool:/data/pg_db
-    image: postgres:9.5
+      - /data/pg_data/old_tkt-labtool:/data/pg_db
+    image: postgres:9.6.8
     restart: unless-stopped    
   web:
     build: .
