@@ -15,10 +15,10 @@
       <%= link_to 'my page', "/tktl-labtool/mypage" %>
       |
       <% if admin? %>
-        <%= link_to 'peer reviews', peer_reviews_url %>
+        <%= link_to 'peer reviews', peer_reviews_path %>
         <%= link_to 'current course', Course.active %>
-        <%= link_to 'courses', courses_url %>
-        <%= link_to 'registrations', registrations_url %>
+        <%= link_to 'courses', courses_path %>
+        <%= link_to 'registrations', registrations_path %>
         <%= link_to 'users', users_url %>
         <%= link_to 'checklists', checklists_url %>
       <% end %>
