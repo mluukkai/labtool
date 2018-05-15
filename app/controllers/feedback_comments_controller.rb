@@ -15,7 +15,7 @@ class FeedbackCommentsController < ApplicationController
 
     student = @user
     reviewer = @feedback.giver
-    NotificationMailer.email(reviewer.email, reviewer.email, "Palautettasi on kommentoitu\nks. #{user_url student}", "viikon #{@feedback.week} palaute", params['notify-cc'], Course.active.name).deliver
+    NotificationMailer.email(reviewer.email, reviewer.email, "Palautettasi on kommentoitu\nks. #{user_path student}", "viikon #{@feedback.week} palaute", params['notify-cc'], Course.active.name).deliver
 
     redirect_to "/mypage/#{@user.student_number}", :notice => "Comment was successfully created."
   end
@@ -35,7 +35,7 @@ class FeedbackCommentsController < ApplicationController
     if params[:notify]
       student = @feedback.user
       reviewer = current_user
-      NotificationMailer.email(reviewer.email, student.email, "Palautettasi on kommentoitu\nks. #{mypage_url+'/'+student.student_number}", "viikon #{@feedback.week} palaute", params['notify-cc'], Course.active.name).deliver
+      NotificationMailer.email(reviewer.email, student.email, "Palautettasi on kommentoitu\nks. #{mypage_path+'/'+student.student_number}", "viikon #{@feedback.week} palaute", params['notify-cc'], Course.active.name).deliver
     end
 
     redirect_to @feedback.registration.user, :notice => 'Comment was successfully created.'

@@ -40,7 +40,7 @@ class WeekFeedbacksController < ApplicationController
       if params[:notify]
         student = week_feedback.user
         reviewer = current_user
-        NotificationMailer.email(reviewer.email, student.email, "ks. #{mypage_url+'/'+student.student_number}", "viikon #{week_feedback.week} palaute", params['notify-cc'], Course.active.name).deliver
+        NotificationMailer.email(reviewer.email, student.email, "ks. #{mypage_path+'/'+student.student_number}", "viikon #{week_feedback.week} palaute", params['notify-cc'], Course.active.name).deliver
       end
 
       redirect_to @registration.user, :notice => 'Week feedback was successfully created.'

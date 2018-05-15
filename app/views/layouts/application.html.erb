@@ -19,8 +19,8 @@
         <%= link_to 'current course', Course.active %>
         <%= link_to 'courses', courses_path %>
         <%= link_to 'registrations', registrations_path %>
-        <%= link_to 'users', users_url %>
-        <%= link_to 'checklists', checklists_url %>
+        <%= link_to 'users', users_path %>
+        <%= link_to 'checklists', checklists_path %>
       <% end %>
       <% if current_user %>
         <%= link_to "logout", logout_path %>
