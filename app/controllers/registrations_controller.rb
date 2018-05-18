@@ -43,7 +43,7 @@ class RegistrationsController < ApplicationController
     user = User.find_or_create(params[:user])
 
     if not user.current_registration.nil?
-      return redirect_to "/tkt_labtool/mypage/#{user.student_number}",
+      return redirect_to "https://studies.cs.helsinki.fi/tktl-labtool/mypage/#{user.student_number}",
                          :notice => "You have already registered for the current course!"
     end
 
@@ -55,7 +55,7 @@ class RegistrationsController < ApplicationController
       user.registrations << @registration
       course.registrations << @registration
       session[:student_number] = user.student_number
-      redirect_to "/tkt_labtool/mypage/#{user.student_number}", :notice =>'Registration done!'
+      redirect_to "https://studies.cs.helsinki.fi/tktl-labtool/mypage/#{user.student_number}", :notice =>'Registration done!'
     else
       @user = user
       render :action => "edit"
