@@ -36,7 +36,7 @@ $(function() {
     var title = $("#new_topic_title").val();
     if (title != "") {
       $("#new_topic_title").val("");
-      $.get("/checklists/ajax/new_topic_form",   
+      $.get("https://studies.cs.helsinki.fi/tktl-labtool/checklists/ajax/new_topic_form",   
         {
           new_key: new_key,
           title: title
@@ -157,7 +157,7 @@ $(function() {
 
       if (title != "") {
         form.find('input[type=text]').val("");
-        $.get("/checklists/ajax/new_check_form",   
+        $.get("https://studies.cs.helsinki.fi/tktl-labtool/checklists/ajax/new_check_form",   
           {
             new_key: new_key,
             topic_key: topic_id,
@@ -186,7 +186,7 @@ $(function() {
         return;
       }
 
-      $.get("/checklists/ajax/import_check_form",   
+      $.get("https://studies.cs.helsinki.fi/tktl-labtool/checklists/ajax/import_check_form",   
         {
           checklist_id: $('form').attr('id').replace('checklist_', ''),
           new_key: new_key,

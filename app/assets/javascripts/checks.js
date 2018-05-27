@@ -25,7 +25,7 @@ $(function() {
 
         $.ajax({
           type: "POST",
-          url: "/checktypes/"+typeid+"/reorder",
+          url: "https://studies.cs.helsinki.fi/tktl-labtool/checktypes/"+typeid+"/reorder",
           data: {"checks[]": ids},
           success: function(data)
           {
