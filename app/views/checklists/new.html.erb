@@ -2,7 +2,7 @@
 <% @checklist.errors[:topics].each do |msg| %>
   <p>Error! <%= msg %></p>
 <% end %>
-<%= form_tag('/checklists') do -%>
+<%= form_tag('https://studies.cs.helsinki.fi/tktl-labtool/checklists') do -%>
   <%= label_tag 'checklist[title]', 'Title' %>
   <%= text_field_tag 'checklist[title]' %>
   <%= submit_tag "Save", :class => "small-button" %>

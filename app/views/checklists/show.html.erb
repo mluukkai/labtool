@@ -1,7 +1,7 @@
 <h1>Checklist</h1>
 <div class="rounded">
   <h2><%= @checklist.title %></h2>
-  <%= form_tag("/checklists/#{@checklist.id}/user/", :class => 'autograde') do -%>
+  <%= form_tag("https://studies.cs.helsinki.fi/tktl-labtool/checklists/#{@checklist.id}/user/", :class => 'autograde') do -%>
     <% if !@registration.nil? %>
       <%= hidden_field_tag 'registration', @registration.id %>
     <% end %>
