@@ -1,5 +1,6 @@
 <h2><%= @checklist.title %></h2>
-<%= form_tag("https://studies.cs.helsinki.fi/tktl-labtool/checklists/#{@checklist.id}/values/", {:id => 'checklist_'+@checklist.id.to_s}) do -%>
+test
+<%= form_tag do %>
   <%= label_tag 'checklist[title]', 'Edit title' %>
   <%= text_field_tag 'checklist[title]', @checklist.title %>
   <%= check_box_tag(:show_feedbacks, nil, true) %>
