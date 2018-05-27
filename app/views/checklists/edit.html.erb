@@ -2,7 +2,7 @@
 <% @checklist.errors[:topics].each do |msg| %>
   <p>Error! <%= msg %></p>
 <% end %>
-<%= form_for(@checklist) do -%>
+<%= form_for(@checklist, url: checklist_path(@checklist)) do -%>
   <%= label_tag 'checklist[title]', 'Title' %>
   <%= text_field_tag 'checklist[title]', @checklist.title %>
   <div>
