@@ -12,7 +12,7 @@
 
       <p><strong>Week: <%= @course.week %></strong></p>
 
-      <%= form_tag("/courses/#{@course.id}", :method => :put) do %>
+      <%= form_tag("/tktl-labtool/courses/#{@course.id}", :method => :put) do %>
           <%= hidden_field_tag 'course[week]', @course.week+1 %>
           
           Use checklist 
