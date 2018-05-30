@@ -45,7 +45,7 @@ $(document).ready(function () {
     
     var reg_id = $("#current_registration").val();
     $("#select_grading").change(function() {
-      $("#grader").load("/checklists/"+$(this).val()+"/user/"+reg_id, addAutosubmit);
+      $("#grader").load("/tktl-labtool/checklists/"+$(this).val()+"/user/"+reg_id, addAutosubmit);
     }).change();
     
     function addAutosubmit() {
