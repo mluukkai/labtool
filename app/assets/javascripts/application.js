@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     $(".activable").click(activateStudent);
     
-    var reg_id = $("#current_registration").val();
+    var reg_id = $("#registration_id").text()// $("#current_registration").val();
     $("#select_grading").change(function() {
       $("#grader").load("/tktl-labtool/checklists/"+$(this).val()+"/user/"+reg_id, addAutosubmit);
     }).change();
